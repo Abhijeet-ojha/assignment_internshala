@@ -11,6 +11,16 @@ import {
 } from 'lucide-react'
 
 // ── Helpers ────────────────────────────────────────────────────────────────
+const GRAIN = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E")`
+
+const MESH_COLORS = [
+  'rgba(78,222,163,0.07)',  // mint
+  'rgba(99,102,241,0.07)',  // indigo
+  'rgba(251,146,60,0.07)',  // orange
+  'rgba(236,72,153,0.07)',  // pink
+  'rgba(34,211,238,0.07)',  // cyan
+  'rgba(250,204,21,0.07)',  // amber
+]
 const ICON_MAP: Record<string, LucideIcon> = {
   BookOpen,
   Code:     Code2,
@@ -150,11 +160,32 @@ export default function CoursesContent({ courses }: { courses: Course[] }) {
                 key={course.id}
                 initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
+                whileHover={{ scale: 1.015 }}
                 transition={{ type: 'spring', stiffness: 280, damping: 24, delay: i * 0.05 }}
                 tabIndex={0}
-                className="bento-card rounded-xl p-md flex flex-col gap-4 cursor-pointer group focus-visible:border-primary"
+                className="relative bento-card rounded-xl p-md flex flex-col gap-4 cursor-pointer group focus-visible:border-primary overflow-visible"
                 aria-labelledby={`course-${course.id}-title`}
               >
+                {/* Grain texture */}
+                <div
+                  className="absolute inset-0 rounded-xl pointer-events-none opacity-[0.03]"
+                  style={{ backgroundImage: GRAIN, backgroundSize: '200px 200px' }}
+                  aria-hidden
+                />
+                {/* Gradient mesh — unique colour per card */}
+                <div
+                  className="absolute inset-0 rounded-xl pointer-events-none"
+                  style={{ background: `radial-gradient(ellipse at top left, ${MESH_COLORS[i % MESH_COLORS.length]} 0%, transparent 60%)` }}
+                  aria-hidden
+                />
+                {/* Border glow on hover */}
+                <motion.div
+                  className="absolute inset-0 rounded-xl ring-1 ring-primary/30 pointer-events-none"
+                  initial={{ opacity: 0 }}
+                  whileHover={{ opacity: 1 }}
+                  transition={{ duration: 0.15 }}
+                  aria-hidden
+                />
                 {/* Icon + title row */}
                 <div className="flex items-start gap-3">
                   <div className="w-10 h-10 rounded-lg bg-surface-container-high border border-outline-variant group-hover:border-primary transition-colors flex items-center justify-center flex-shrink-0 mt-0.5">
