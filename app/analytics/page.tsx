@@ -1,5 +1,6 @@
 import Sidebar from '../../components/layout/Sidebar'
 import ActivityCard from '../../components/dashboard/ActivityCard'
+import AnimatedBar from '../../components/dashboard/AnimatedBar'
 import { getCourses } from '../../lib/supabase/queries'
 import type { Course } from '../../types/course'
 import type { LucideIcon } from 'lucide-react'
@@ -168,12 +169,7 @@ export default async function AnalyticsPage() {
                             <span className="text-sm text-on-surface font-medium truncate pr-3">{course.title}</span>
                             <span className="font-mono text-[11px] text-primary flex-shrink-0">{course.progress}%</span>
                           </div>
-                          <div className="h-1.5 bg-surface-container-high rounded-full overflow-hidden">
-                            <div
-                              className="h-full bg-primary rounded-full"
-                              style={{ width: `${course.progress}%`, transition: 'width 0.7s ease' }}
-                            />
-                          </div>
+                          <AnimatedBar value={course.progress} delay={0.1 + courses.indexOf(course) * 0.07} />
                         </div>
                       </div>
                     )

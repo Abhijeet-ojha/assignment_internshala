@@ -219,7 +219,7 @@ export default function CoursesContent({ courses }: { courses: Course[] }) {
                     <motion.div
                       initial={{ scaleX: 0 }}
                       animate={{ scaleX: course.progress / 100 }}
-                      transition={{ type: 'spring', stiffness: 260, damping: 22, delay: 0.1 + i * 0.05 }}
+                      transition={{ type: 'tween', duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.15 + i * 0.06 }}
                       className={`h-full rounded-full origin-left ${isDone ? 'bg-primary' : 'bg-primary'}`}
                       style={{ transformOrigin: '0 50%' }}
                     />

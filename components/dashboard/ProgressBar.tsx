@@ -19,7 +19,7 @@ export default function ProgressBar({ value, size = 'sm' }: Props) {
       <motion.div
         initial={{ scaleX: 0 }}
         animate={{ scaleX: value / 100 }}
-        transition={{ type: 'spring', stiffness: 260, damping: 22, delay: 0.05 }}
+        transition={{ type: 'tween', duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.05 }}
         className="origin-left h-full rounded-full bg-primary"
         style={{ transformOrigin: '0 50%' }}
       />

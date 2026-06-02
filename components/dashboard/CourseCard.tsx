@@ -104,7 +104,7 @@ export default function CourseCard({ course }: Props) {
           <motion.div
             initial={{ scaleX: 0 }}
             animate={{ scaleX: course.progress / 100 }}
-            transition={{ type: 'spring', stiffness: 260, damping: 22, delay: 0.2 }}
+            transition={{ type: 'tween', duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
             className="h-full bg-primary rounded-full origin-left"
             style={{ transformOrigin: '0 50%' }}
           />

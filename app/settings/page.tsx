@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Sidebar from '../../components/layout/Sidebar'
 import { Bell, User, CheckCircle2 } from 'lucide-react'
+import DeleteAccountButton from '../../components/layout/DeleteAccountButton'
 
 type Toggle = { label: string; sub: string; on: boolean }
 
@@ -198,9 +199,7 @@ export default function SettingsPage() {
 
           {/* ── Save row ─────────────────────────────────── */}
           <div className="flex items-center justify-between pb-margin">
-            <button className="font-mono text-[11px] text-on-surface-variant hover:text-error uppercase tracking-widest transition-colors">
-              Delete Account
-            </button>
+            <DeleteAccountButton />
             <button
               onClick={save}
               className={`px-8 py-3 rounded-xl font-mono text-[12px] uppercase tracking-widest font-bold transition-all ${
