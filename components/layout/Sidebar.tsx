@@ -10,11 +10,10 @@ import {
   LineChart,
   Settings,
   HelpCircle,
-  LogOut,
   Zap,
   ChevronRight,
 } from 'lucide-react'
-import { signOut } from '../../app/auth/actions'
+import LogoutButton from './LogoutButton'
 
 const navItems = [
   { label: 'Dashboard', icon: LayoutDashboard, href: '/dashboard' },
@@ -135,28 +134,8 @@ export default function Sidebar() {
             </AnimatePresence>
           </a>
 
-          {/* Logout — server action via form */}
-          <form action={signOut}>
-            <button
-              type="submit"
-              className="w-full flex items-center gap-4 px-3 py-3 text-on-surface-variant hover:bg-surface-container-high hover:text-error transition-colors"
-            >
-              <LogOut size={20} className="flex-shrink-0" aria-hidden strokeWidth={1.75} />
-              <AnimatePresence>
-                {expanded && (
-                  <motion.span
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.1 }}
-                    className="font-mono text-[12px] tracking-widest whitespace-nowrap uppercase"
-                  >
-                    Logout
-                  </motion.span>
-                )}
-              </AnimatePresence>
-            </button>
-          </form>
+          {/* Logout — animated overlay */}
+          <LogoutButton expanded={expanded} />
 
           {/* Collapse / Expand toggle */}
           <button
