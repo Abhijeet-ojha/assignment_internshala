@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Sidebar from '../../components/layout/Sidebar'
-import { Bell, User, CheckCircle2 } from 'lucide-react'
+import { Bell, User } from 'lucide-react'
 import DeleteAccountButton from '../../components/layout/DeleteAccountButton'
 
 type Toggle = { label: string; sub: string; on: boolean }
@@ -11,7 +11,6 @@ export default function SettingsPage() {
   const [saved,        setSaved]        = useState(false)
   const [weeklyHours,  setWeeklyHours]  = useState(5)
   const [reminderTime, setReminderTime] = useState('09:00')
-  const [activeTheme,  setActiveTheme]  = useState('Dark')
   const [toggles, setToggles] = useState<Toggle[]>([
     { label: 'Email Notifications', sub: 'Get weekly progress reports via email',    on: true  },
     { label: 'Push Notifications',  sub: 'Daily study reminders and course updates', on: false },
@@ -25,12 +24,6 @@ export default function SettingsPage() {
     setSaved(true)
     setTimeout(() => setSaved(false), 3000)
   }
-
-  const THEMES = [
-    { label: 'Dark', bg: '#0A0A0A' },
-    { label: 'Dim',  bg: '#1a1a2e' },
-    { label: 'AMOLED', bg: '#000000' },
-  ]
 
   return (
     <main id="content" className="min-h-screen flex bg-[#0A0A0A]">
@@ -164,35 +157,6 @@ export default function SettingsPage() {
                     <span className="sr-only">{item.on ? 'On' : 'Off'}</span>
                   </button>
                 </div>
-              ))}
-            </div>
-          </section>
-
-          {/* ── Appearance ───────────────────────────────── */}
-          <section className="bento-card rounded-xl p-md">
-            <h2 className="font-mono text-[11px] tracking-widest text-on-surface-variant uppercase mb-6">Appearance</h2>
-            <div className="grid grid-cols-3 gap-3">
-              {THEMES.map((theme) => (
-                <button
-                  key={theme.label}
-                  onClick={() => setActiveTheme(theme.label)}
-                  className={`p-4 rounded-xl border-2 transition-all text-left ${
-                    activeTheme === theme.label
-                      ? 'border-primary'
-                      : 'border-outline-variant hover:border-on-surface-variant'
-                  }`}
-                >
-                  <div
-                    className="w-full h-12 rounded-lg mb-3 border border-outline-variant"
-                    style={{ background: theme.bg }}
-                  />
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono text-[11px] text-on-surface uppercase tracking-widest">{theme.label}</span>
-                    {activeTheme === theme.label && (
-                      <CheckCircle2 size={16} className="text-primary" fill="currentColor" aria-hidden />
-                    )}
-                  </div>
-                </button>
               ))}
             </div>
           </section>
