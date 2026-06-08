@@ -1,4 +1,4 @@
-# Lumina — Next-Gen Learning Dashboard
+# Lumina — Learning Dashboard
 
 > **Frontend Intern Challenge** — Built with Next.js 15, Supabase, Tailwind CSS, and Framer Motion.
 
